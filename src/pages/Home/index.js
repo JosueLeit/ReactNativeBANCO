@@ -1,28 +1,30 @@
 import { StatusBar } from 'expo-status-bar'
-import { StyleSheet, Text, View } from 'react-native'
+import { StyleSheet, Text, View, FlatList } from 'react-native'
 import Header from '../../components/Header'
 import Balance from '../../components/Balance'
+import Movements from '../../components/Movements'
+import Actions from '../../components/Actions'
 
 const list = [
   {
     id: 1,
     label: 'Boleto conta luz',
     value: '480,90',
-    date: '17/09/2022',
+    date: '17/10/2022',
     type: 0 //despesas
   },
   {
     id: 2,
     label: 'Aluguel escritório',
-    value: '6000,00',
+    value: '6.000,00',
     date: '10/09/2022',
     type: 0 //despesas
   },
   {
     id: 3,
     label: 'Pix Cliente Nubank',
-    value: '2300,00',
-    date: '10/09/2022',
+    value: '2.300,00',
+    date: '05/08/2022',
     type: 1 //receitas
   }
 ]
@@ -30,10 +32,20 @@ const list = [
 export default function Home() {
   return (
     <View style={styles.container}>
-      <Header name="Josué Leite" />
+      <Header name="Italo Izaac de Andrade" />
       <Balance saldo="1.000.000,00" despesas="-25.800,00" />
 
+      <Actions />
+
       <Text style={styles.title}>Últimas Movimentações</Text>
+
+      <FlatList
+        style={styles.list}
+        data={list}
+        keyExtractor={item => String(item.id)}
+        showVerticalScrollIndicator={false}
+        renderItem={({ item }) => <Movements data={item} />}
+      />
 
       <StatusBar style="auto" />
     </View>
@@ -48,8 +60,10 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 18,
     fontWeight: 'bold',
-    marginLeft: 14,
-    marginRight: 14,
-    marginTop: 14
+    margin: 14
+  },
+  list: {
+    marginStart: 14,
+    marginEnd: 14
   }
 })

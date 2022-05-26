@@ -32,8 +32,8 @@ const list = [
 export default function Home() {
   return (
     <View style={styles.container}>
-      <Header name="Italo Izaac de Andrade" />
-      <Balance saldo="1.000.000,00" despesas="-25.800,00" />
+      <Header name="Lucas Barros Santos" />
+      <Balance saldo="647.800,32" despesas="-5.1320,71" />
 
       <Actions />
 
